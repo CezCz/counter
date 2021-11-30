@@ -3,14 +3,14 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width,initial-scale=1">
-		<title>Is Patrick back to the office</title>
+		<title>How long until my shift is over?</title>
         <style>
             
         </style>
 	</head>
 	<body style="background:url('./bg.jpeg') no-repeat center center fixed; background-size: cover;">
         <div style="font-family:'Courier New', Courier, monospace;font-size:40px; display:flex; flex-direction: column; align-items: center; align-content:center; color:white; text-shadow: 2px 0 0 #000, 0 -2px 0 #000, 0 2px 0 #000, -2px 0 0 #000; width:100%; height:100%; justify-content: center;position: absolute;">
-            <div>Is Patrick back?</div>
+            <div>How long until my shift is over?</div>
             <div id="isBack"></div>
             <div id="counter"></div>
         </div>
@@ -21,7 +21,10 @@
             }, 500);
             function updateDate() {
                 var currentdate = new Date();
-                var backdate = new Date(1637485200000);
+                var backdate = new Date(1638293400000);
+                while(currentdate - backdate > 0) {
+                    backdate = new Date(backdate.getTime() + 8*60*60*1000)
+                }
                 var timeleft = Math.abs(currentdate - backdate)/1000
                 var days = Math.floor(timeleft/(3600*24))
                 timeleft = timeleft - (days * (3600*24))
@@ -32,10 +35,8 @@
                 var seconds = Math.floor(timeleft%60);
                 var counter = document.getElementById("counter");
                 var isBack = document.getElementById("isBack");
-                counter.innerText = `${days} Days ${(hours+"").padStart(2, '0')}:${(minutes+"").padStart(2, '0')}:${(seconds+"").padStart(2, '0')}`
-                isBack.innerText = currentdate - backdate < 0 ? "No":"Yes"
+                counter.innerText = `${(hours+"").padStart(2, '0')}:${(minutes+"").padStart(2, '0')}:${(seconds+"").padStart(2, '0')}`
             }
         </script>
 	</body>
-
 </html>
