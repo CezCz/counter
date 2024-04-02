@@ -3,16 +3,16 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width,initial-scale=1">
-		<title>How long until my shift is over?</title>
+		<title>How long until Balint is back?</title>
         <style>
             
         </style>
 	</head>
-	<body style="background:url('./bg.jpeg') no-repeat center center fixed; background-size: cover;">
-        <div style="font-family:'Courier New', Courier, monospace;font-size:40px; display:flex; flex-direction: column; align-items: center; align-content:center; color:white; text-shadow: 2px 0 0 #000, 0 -2px 0 #000, 0 2px 0 #000, -2px 0 0 #000; width:100%; height:100%; justify-content: center;position: absolute;">
-            <div>How long until my on-call shift is over?</div>
-            <div id="counter"></div>
+	<body style="background:url('./dog.jpg') no-repeat center center fixed; background-size: cover;">
+        <div style="font-family:'Courier New', Courier, monospace;font-size:120px; display:flex; flex-direction: column; align-items: center; align-content:center; color:white; text-shadow: 2px 0 0 #000, 0 -2px 0 #000, 0 2px 0 #000, -2px 0 0 #000; width:100%; height:100%; justify-content: center;position: absolute;">
+            <div>Is Balint back yet?</div>
             <div id="isBack"></div>
+            <div id="counter"></div>
         </div>
         <script>
             updateDate()
@@ -20,18 +20,30 @@
                 updateDate()
             }, 500);
             function updateDate() {
-                var currentdate = new Date();
-                var backdate = new Date(1638178200000);
-                var enddate = new Date(backdate.getTime() +7*24*60*60*1000)
-                while(currentdate - backdate > 0) {
-                    backdate = new Date(backdate.getTime() + 8*60*60*1000)
-                }
-                while(currentdate - enddate > 0) {
-                    enddate = new Date(enddate.getTime() + 24*8*60*60*1000)
-                }
-                var timeleft = Math.abs(enddate - backdate)/1000
-                var daysTillEnd = Math.floor(timeleft/(3600*24))
+                // var currentdate = new Date();
+                // var backdate = new Date(1718013600000);
+                // var enddate = backdate; // new Date(backdate.getTime() +7*24*60*60*1000)
+                // while(currentdate - backdate > 0) {
+                //     backdate = new Date(backdate.getTime() + 8*60*60*1000)
+                // }
+                // while(currentdate - enddate > 0) {
+                //     enddate = new Date(enddate.getTime() + 24*8*60*60*1000)
+                // }
+                // var timeleft = Math.abs(currentdate - backdate)/1000
+                // var daysTillEnd = Math.floor(timeleft/(3600*24))
 
+                // var timeleft = Math.abs(currentdate - backdate)/1000
+                // var days = Math.floor(timeleft/(3600*24))
+                // timeleft = timeleft - (days * (3600*24))
+                // var hours = Math.floor(timeleft/3600)%24
+                // timeleft = timeleft - hours*3600
+                // var minutes = Math.floor(timeleft/60)%60
+                // timeleft = timeleft - minutes*60
+                // var seconds = Math.floor(timeleft%60);
+                // var counter = document.getElementById("counter");
+                // var isBack = document.getElementById("isBack");
+                var currentdate = new Date();
+                var backdate = new Date(1718006400000);
                 var timeleft = Math.abs(currentdate - backdate)/1000
                 var days = Math.floor(timeleft/(3600*24))
                 timeleft = timeleft - (days * (3600*24))
@@ -42,8 +54,8 @@
                 var seconds = Math.floor(timeleft%60);
                 var counter = document.getElementById("counter");
                 var isBack = document.getElementById("isBack");
-                isBack.innerHTML = `${daysTillEnd} days more to come`
-                counter.innerText = `Today ${(hours+"").padStart(2, '0')}:${(minutes+"").padStart(2, '0')}:${(seconds+"").padStart(2, '0')} left`
+                counter.innerText = `${days} Days ${(hours+"").padStart(2, '0')}:${(minutes+"").padStart(2, '0')}:${(seconds+"").padStart(2, '0')}`
+                isBack.innerText = currentdate - backdate < 0 ? "No, still for":"Yes, for"
             }
         </script>
 	</body>
